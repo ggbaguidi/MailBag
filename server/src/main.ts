@@ -17,7 +17,7 @@ app.use(
 app.use(function(inRequest: Request,inResponse:Response,inNext: NextFunction){
     inResponse.header("Access-Control-Allow-Origin","*");
     inResponse.header("Access-Control-Allow-Methods",
-        "GET, POST,DELETE,OPTIONS"
+        "GET, POST, DELETE, OPTIONS"
     );
     inResponse.header("Access-Control-Allow-Headers",
         "Origin, X-Requested-With,Content-Type, Accept"
@@ -145,7 +145,7 @@ app.delete("/contacts/:id",
 //REST Endpoint: UPDATE a contact
 
 app.put("/contacts/:_id/:newName/:newEmail",
-    async (inRequest:Request,inResponse:Response)=>{
+    async (inRequest:Request, inResponse:Response)=>{
         try {
             const contactWorker: Contacts.Worker = new Contacts.Worker();
             await contactWorker.updateContact(parseInt(inRequest.params._id),
@@ -158,3 +158,7 @@ app.put("/contacts/:_id/:newName/:newEmail",
         }
     }
 );
+
+// app.listen(3000, ()=>{
+//     console.log("Listen a server in 3000")
+// })

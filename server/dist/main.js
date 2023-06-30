@@ -46,7 +46,7 @@ app.use(express_1.default.json());
 app.use("/", express_1.default.static(path_1.default.join(__dirname, "../../client/dist")));
 app.use(function (inRequest, inResponse, inNext) {
     inResponse.header("Access-Control-Allow-Origin", "*");
-    inResponse.header("Access-Control-Allow-Methods", "GET, POST,DELETE,OPTIONS");
+    inResponse.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
     inResponse.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type, Accept");
     inNext();
 });
@@ -157,4 +157,7 @@ app.put("/contacts/:_id/:newName/:newEmail", (inRequest, inResponse) => __awaite
         inResponse.send("error");
     }
 }));
+// app.listen(3000, ()=>{
+//     console.log("Listen a server in 3000")
+// })
 //# sourceMappingURL=main.js.map
