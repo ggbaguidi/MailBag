@@ -1,33 +1,10 @@
 {
     "smtp":{
-        "host":"mail.mydomain.com","port":999,
+        "host":"localhost","port":25,
         "auth":{"user":"user@domain.com","pass":"xxx"}
     },
     "imap":{
-        "host":"mail.mydomain.com","port":999,
+        "host":"localhost","port":143,
         "auth":{"user":"user@domain.com","pass":"xxx"}
-    },
-    "root": true,
-    "children": [
-    {
-        "name": "INBOX", "delimiter": "/", "path": "INBOX",
-        "children": [],
-        "flags": ["\\HasNoChildren"],
-        "listed": true, "subscribed": true
-    },
-    {
-        "flags": ["\\Noselect","\\HasChildren"],
-        "listed": true, "subscribed": true,
-        "children": [
-        {
-            "name": "All Mail", "delimiter": "/",
-            "path": "[Gmail]/All Mail",
-            "children": [],
-            "flags": ["\\HasNoChildren","\\All"],
-            "listed": true, "specialUse": "\\All",
-            "specialUseFlag": "\\All", "subscribed": true
-        }
-        ]
     }
-    ]
 }

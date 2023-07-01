@@ -1,11 +1,11 @@
 import path from "path";
 import express,
-    {Express,NextFunction, Request,Response} from "express";
-import {serverInfo} from "./ServerInfo";
+    { Express, NextFunction, Request, Response } from "express";
+import { serverInfo } from "./ServerInfo";
 import * as IMAP from "./IMAP";
 import * as SMTP from "./SMTP";
 import * as Contacts from "./contacts";
-import {IContact} from "./contacts";
+import { IContact } from "./contacts";
 
 const app: Express = express();
 app.use(express.json());
@@ -159,6 +159,6 @@ app.put("/contacts/:_id/:newName/:newEmail",
     }
 );
 
-// app.listen(3000, ()=>{
-//     console.log("Listen a server in 3000")
-// })
+app.listen(4000, ()=>{
+    console.log("Listen a server in 4000")
+})

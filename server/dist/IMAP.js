@@ -19,12 +19,22 @@ class Worker {
     }
     connectToServer() {
         return __awaiter(this, void 0, void 0, function* () {
-            const client = new ImapClient.default(Worker.serverInfo.imap.host, Worker.serverInfo.imap.port, { auth: Worker.serverInfo.imap.auth });
+            /*const client: any = new ImapClient.default(
+                Worker.serverInfo.imap.host,
+                Worker.serverInfo.imap.port/*,
+                {auth: Worker.serverInfo.imap.auth}*
+            );*/
+            var client = new ImapClient('localhost', 143);
+            client.openConnection().then((capability) => {
+                client.close();
+                /* check capability too see, for example, if server is a gmail server and thereby decide on how to authenticate when connecting */
+            });
             client.logLevel = client.LOG_LEVEL_NONE;
             client.onerror = (inError) => {
                 console.log("IMAP.Worker.listMailboxes(): Connection error", inError);
             };
             yield client.connect();
+            console.log("connected ........");
             return client;
         });
     }
@@ -43,6 +53,7 @@ class Worker {
                 });
             };
             iterateChildren(mailboxes.children);
+            console.log(finalMailboxes);
             return finalMailboxes;
         });
     }

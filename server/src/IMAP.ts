@@ -26,11 +26,16 @@ export class Worker {
         Worker.serverInfo = inServerInfo;
     }
     private async connectToServer():Promise<any> {
-        const client: any = new ImapClient.default(
+        /*const client: any = new ImapClient.default(
             Worker.serverInfo.imap.host,
-            Worker.serverInfo.imap.port,
-            {auth:Worker.serverInfo.imap.auth}
-        );
+            Worker.serverInfo.imap.port/*,
+            {auth: Worker.serverInfo.imap.auth}*
+        );*/
+        var client = new ImapClient('localhost', 143);
+            client.openConnection().then((capability: any) => {
+            client.close()
+            /* check capability too see, for example, if server is a gmail server and thereby decide on how to authenticate when connecting */
+        });
         client.logLevel = client.LOG_LEVEL_NONE;
         client.onerror  = (inError:Error)=>{
             console.log(
@@ -39,6 +44,7 @@ export class Worker {
             );
         }
         await client.connect();
+        console.log("connected ........");
         return client;
     }
 
@@ -50,13 +56,14 @@ export class Worker {
         const iterateChildren: Function = (inArray: any[]):void =>{
             inArray.forEach((inValue: any)=> {
                 finalMailboxes.push({
-                    name:inValue.name,path:inValue.path
+                    name:inValue.name, path:inValue.path
                 });
                 iterateChildren(inValue.children);
             });
             
         };
         iterateChildren(mailboxes.children);
+        console.log(finalMailboxes);
         return finalMailboxes;
     }
     public async listMessages(inCallOptions:ICallOptions):Promise<IMessage[]>{

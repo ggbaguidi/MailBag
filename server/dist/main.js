@@ -157,7 +157,7 @@ app.put("/contacts/:_id/:newName/:newEmail", (inRequest, inResponse) => __awaite
         inResponse.send("error");
     }
 }));
-// app.listen(3000, ()=>{
-//     console.log("Listen a server in 3000")
-// })
+app.listen(4000, () => {
+    console.log("Listen a server in 4000");
+});
 //# sourceMappingURL=main.js.map
